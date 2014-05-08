@@ -50,30 +50,6 @@ public class Cell : MonoBehaviour {
         }
     }
 
-	public void Select(){
-		Selected = true;
-	}
-
-	public void Unselect(){
-		Selected = false;
-	}
-
-	public void HoverIn(){
-		Hovered = true;
-	}
-
-	public void HoverOut(){
-		Hovered = false;
-	}
-
-	public void SetWithinRange(){
-		WithinRange = true;
-	}
-
-	public void SetOutOfRange(){
-		WithinRange = false;
-	}
-
 	public int DistanceTo(int x, int y, int z){
 		return Mathf.Abs(gx - x) + Mathf.Abs(gy - y) + Mathf.Abs(gz - z);
     }

@@ -23,16 +23,16 @@ public class MouseInput : MonoBehaviour {
 					var shouldBeSelected = other.GetComponent<Cell>();
 					if(shouldBeSelected.WithinRange){
 						if (selectedCell != null){
-							selectedCell.Unselect();
+							selectedCell.Selected = false;
 						}
 						selectedCell = shouldBeSelected;
-						selectedCell.Select();
+						selectedCell.Selected = true;
 					}
 				}
 			}
 		} else if (Input.GetMouseButtonDown (RIGHT_BUTTON)) {
 			if (selectedCell != null){
-				selectedCell.Unselect();
+				selectedCell.Selected = false;
 				selectedCell = null;
 			}
 		} else {			
@@ -42,10 +42,10 @@ public class MouseInput : MonoBehaviour {
 				var other = hit.collider.gameObject;
 				if(other.CompareTag("Cell")){
 					if(hoveredCell != null){
-						hoveredCell.HoverOut();
+						hoveredCell.Hovered = false;
 					}
 					hoveredCell = other.GetComponent<Cell>();
-                    hoveredCell.HoverIn();
+					hoveredCell.Hovered = true;
                 }
 			}
 		}

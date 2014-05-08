@@ -24,9 +24,9 @@ public class Character : MonoBehaviour {
 		var cells = FindObjectsOfType<Cell>();
 		foreach(Cell cell in cells){
 			if(cell.DistanceTo(gx, gy, gz) <= CurrentAP){
-				cell.SetWithinRange();
+				cell.WithinRange = true;
 			} else {
-				cell.SetOutOfRange();
+				cell.WithinRange = false;
 			}
 		}
 	}
