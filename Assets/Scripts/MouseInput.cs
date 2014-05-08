@@ -21,7 +21,7 @@ public class MouseInput : MonoBehaviour {
 				var other = hit.collider.gameObject;
 				if (other.CompareTag ("Cell")) {
 					var shouldBeSelected = other.GetComponent<Cell>();
-					if(shouldBeSelected.Ranged){
+					if(shouldBeSelected.WithinRange){
 						if (selectedCell != null){
 							selectedCell.Unselect();
 						}

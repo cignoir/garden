@@ -9,29 +9,32 @@ public class Cell : MonoBehaviour {
 
 	public bool Selected { get; set; }
 	public bool Hovered { get; set; }
-	public bool Ranged { get; set; }
+	public bool WithinRange { get; set; }
+	public bool OnRoute{ get; set; }
 
-	static Color defaultColor = new Color(1f, 1f, 1f);
+	static Color defaultColor = Color.white;
 	static Color shownColor = defaultColor;
-	static Color selectedColor = new Color(1f, 0.5f, 0.5f);
-	static Color hoveredColor = new Color(0.5f, 0.8f, 1f);
-	static Color rangedColor = new Color(0.5f, 0.6f, 0.8f);
+	static Color selectedColor = Color.magenta;
+	static Color hoveredColor = Color.yellow;
+	static Color rangeColor = Color.cyan;
+	static Color routeColor = Color.yellow;
 
 	void Start () {
 		transform.position = new Vector3 (gx * transform.localScale.x, gy * transform.localScale.y, gz * transform.localScale.z);
 		Selected = false;
 		Hovered = false;
-		Ranged = false;
+		WithinRange = false;
+		OnRoute = false;
 	}
 	
 	void Update () {
-		Color ();
+		UpdateColor ();
 
 	}
 
-	private void Color(){
-		if(Ranged){
-			shownColor = rangedColor;
+	private void UpdateColor(){
+		if(WithinRange){
+			shownColor = rangeColor;
 		} else {
 			shownColor = defaultColor;
 		}
@@ -63,12 +66,12 @@ public class Cell : MonoBehaviour {
 		Hovered = false;
 	}
 
-	public void WithinRange(){
-		Ranged = true;
+	public void SetWithinRange(){
+		WithinRange = true;
 	}
 
-	public void OutOfRange(){
-		Ranged = false;
+	public void SetOutOfRange(){
+		WithinRange = false;
 	}
 
 	public int DistanceTo(int x, int y, int z){
