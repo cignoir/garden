@@ -6,12 +6,28 @@ public class Character : MonoBehaviour {
 	public int gx;
 	public int gy;
 	public int gz;
+
+	public float MaxAP { get; set; }
+	public float CurrentAP { get; set; }
 	
 	void Start () {
-		transform.position = new Vector3 (gx * transform.localScale.x, (float)(gy * transform.localScale.y * 1.5), gz * transform.localScale.z);
+		MaxAP = 3.0f;
+		CurrentAP = MaxAP;
+		transform.position = new Vector3((float)gx * 2f, (float)gy * 1 + 0.5f, (float)gz * 2f);
 	}
 
 	void Update () {
-	
+		ShowMovingRange();
+	}
+
+	void ShowMovingRange(){
+		var cells = FindObjectsOfType<Cell>();
+		foreach(Cell cell in cells){
+			if(cell.DistanceTo(gx, gy, gz) <= CurrentAP){
+				cell.WithinRange();
+			} else {
+				cell.OutOfRange();
+			}
+		}
 	}
 }

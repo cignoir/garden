@@ -20,11 +20,14 @@ public class MouseInput : MonoBehaviour {
 			if (Physics.Raycast (ray, out hit, RAYCAST_RANGE)) {
 				var other = hit.collider.gameObject;
 				if (other.CompareTag ("Cell")) {
-					if (selectedCell != null){
-						selectedCell.Unselect();
+					var shouldBeSelected = other.GetComponent<Cell>();
+					if(shouldBeSelected.Ranged){
+						if (selectedCell != null){
+							selectedCell.Unselect();
+						}
+						selectedCell = shouldBeSelected;
+						selectedCell.Select();
 					}
-					selectedCell = other.GetComponent<Cell>();
-					selectedCell.Select();
 				}
 			}
 		} else if (Input.GetMouseButtonDown (RIGHT_BUTTON)) {
