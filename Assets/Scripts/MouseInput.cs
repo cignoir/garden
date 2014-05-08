@@ -4,7 +4,7 @@ using System.Collections;
 public class MouseInput : MonoBehaviour {
 	const int LEFT_BUTTON = 0;
 	const int RIGHT_BUTTON = 1;
-	const int RAYCAST_RANGE = 100;
+	const int RAYCAST_RANGE = 50;
 
 	Cell selectedCell;
 	Cell hoveredCell; 
