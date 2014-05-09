@@ -39,7 +39,9 @@ public class Cell : MonoBehaviour {
 			shownColor = defaultColor;
 		}
 
-		if (Selected && Hovered) {
+		if(OnRoute){
+			renderer.material.color = routeColor; 
+		} else if (Selected && Hovered) {
 			renderer.material.color = selectedColor;
 		} else if (Selected) {
 			renderer.material.color = selectedColor;

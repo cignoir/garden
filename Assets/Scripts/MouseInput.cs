@@ -46,6 +46,15 @@ public class MouseInput : MonoBehaviour {
 					}
 					hoveredCell = other.GetComponent<Cell>();
 					hoveredCell.Hovered = true;
+
+					var cells = new Pathfinder(3, 5, Ways.FOUR).From(1, 0).To(hoveredCell.gx, hoveredCell.gz).Pathfind().Cells;
+
+					for(int x = 0; x < 3; x++){
+						for(int y = 0; y < 5; y++){
+							Battle.cells[x, 0 , y].OnRoute = cells[x, y].IsPath;
+						}
+					}
+
                 }
 			}
 		}
