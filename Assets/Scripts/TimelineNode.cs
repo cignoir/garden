@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TimelineNode : MonoBehaviour {
+public enum Direction {
+	N, W, E, S
+}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+public class TimelineNode {
+	public Cell Cell { get; set; }
+	public Direction Direction { get; set; }
+ 
+	public TimelineNode(Cell cell){
+		this.Cell = cell;
 	}
 }

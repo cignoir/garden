@@ -10,26 +10,39 @@ public class Cell : MonoBehaviour {
 	public bool Selected { get; set; }
 	public bool Hovered { get; set; }
 	public bool WithinRange { get; set; }
-	public bool OnRoute{ get; set; }
+	public bool IsPath{ get; set; }
+	public bool IsWall { get; set; }
+	public int Steps{ get; set;}
+	public Direction Direction{ get; set; }
 
 	static Color defaultColor = Color.white;
 	static Color shownColor = defaultColor;
 	static Color selectedColor = Color.magenta;
-	static Color hoveredColor = Color.yellow;
+	static Color hoveredColor = Color.blue;
 	static Color rangeColor = Color.cyan;
-	static Color routeColor = Color.yellow;
+	static Color pathColor = Color.yellow;
 
 	void Start () {
 		transform.position = new Vector3 (gx * transform.localScale.x, gy * transform.localScale.y, gz * transform.localScale.z);
 		Selected = false;
 		Hovered = false;
 		WithinRange = false;
-		OnRoute = false;
+		IsPath = false;
 	}
 	
 	void Update () {
 		UpdateColor ();
 
+		switch(Direction){
+		case Direction.N:
+			break;
+		case Direction.E:
+			break;
+		case Direction.W:
+			break;
+		case Direction.S:
+			break;
+		}
 	}
 
 	private void UpdateColor(){
@@ -39,14 +52,12 @@ public class Cell : MonoBehaviour {
 			shownColor = defaultColor;
 		}
 
-		if(OnRoute){
-			renderer.material.color = routeColor; 
-		} else if (Selected && Hovered) {
-			renderer.material.color = selectedColor;
-		} else if (Selected) {
+		if (Selected) {
 			renderer.material.color = selectedColor;
 		} else if (Hovered) {
 			renderer.material.color = hoveredColor;
+		} else if(IsPath){
+			renderer.material.color = pathColor;
 		} else {
             renderer.material.color = shownColor;
         }

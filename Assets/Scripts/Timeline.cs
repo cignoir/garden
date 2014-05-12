@@ -1,14 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Timeline : MonoBehaviour {
+public class Timeline {
+	public List<TimelineNode> Nodes { get; set; }
+	public TimelineNode LastNode {
+		get { return Nodes.Count > 0 ? Nodes[Nodes.Count - 1] : null; }
+	}
 
-	// Use this for initialization
+	public Timeline(){
+		this.Nodes = new List<TimelineNode>();
+	}
+
+	public bool Contains(Cell cell){
+		return	Nodes.Find(x => x.Cell == cell) != null;
+	}
+
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
